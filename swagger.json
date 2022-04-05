@@ -1,0 +1,172 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0", 
+        "title": "Easy users API creater",
+        "contact": {
+            "github": "https://github.com/KojiroAsano"
+        },
+        "description": "This is my first swagger application. My Swagger User Application for creating user information data. If you have any quetion or need to fix some code, please visit my github [My github](https://github.com/KojiroAsano). If you have any suggestion, please let me know!!",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+        
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": ["Users"],
+                "summary": "Get all users information in system",
+                "description": "Get all users information in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        
+        "/user": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Create a new user  in system",
+                "description": "Create a new user  in system",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New User is created",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "405":{
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "delete": {
+                
+                "tags": ["Users"],
+                "summary": "Delete the specific user information in system",
+                "description": "Delete User in system",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "ID of user that we want to delete",
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }, 
+            "get": {
+                "tags": ["Users"],
+                "summary": "Get one user information in system",
+                "description": "Get one user information in system",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "description": "ID of user that we want to get",
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        }
+
+    },
+    "definitions": {
+        "User": {
+            "required": ["id","first", "last", "phone", "email", "password", "gender"],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "first": {
+                    "type": "string"
+                },
+                "last": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "gender": {
+                    "enum": ["male", "female"]
+                }
+            }
+        }
+    }
+}
