@@ -9,8 +9,9 @@
 
 ## Installation:
   1. Downloads each file into one file. <br>
-     1. **index.js** <br>
+    1. **index.js** <br>
      2. **swagger.json**<br>
+     3. **package.json**<br>
   3. Open shell and type **npm init**.
      ```console
      npm init
